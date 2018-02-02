@@ -6,6 +6,6 @@ public class GsonAnnotations implements AnnotationGenerator {
 
     @Override
     public String getSerializeName(String jsonKey) {
-        return "@SerializedName(\"" + jsonKey + "\")";
+        return "@Expose\n@SerializedName(\"" + jsonKey + "\")";
     }
 }
