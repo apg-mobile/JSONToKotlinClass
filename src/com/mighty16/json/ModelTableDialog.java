@@ -16,6 +16,7 @@ public class ModelTableDialog extends JDialog implements ClassesListDelegate.OnC
     private JList list1;
     private JRadioButton annotationsNoneButton;
     private JRadioButton annotationsGsonButton;
+    private JRadioButton annotationGsonExposeButton;
 
     private FieldsTableDelegate fieldsTableDelegate;
     private ClassesListDelegate classesListDelegate;
@@ -74,6 +75,8 @@ public class ModelTableDialog extends JDialog implements ClassesListDelegate.OnC
             int annotationsType = 0;
             if (annotationsGsonButton.isSelected()){
                 annotationsType = 1;
+            } else if (annotationGsonExposeButton.isSelected()){
+                annotationsType = 2;
             }
             callbacks.onModelsReady(data,annotationsType);
         }

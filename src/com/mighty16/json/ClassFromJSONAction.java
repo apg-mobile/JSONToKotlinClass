@@ -92,6 +92,8 @@ public class ClassFromJSONAction extends AnAction implements JSONEditDialog.JSON
             case 1:
                 annotations = new GsonAnnotations();
                 break;
+            case 2:
+                annotations = new GsonAnnotations();
         }
         SourceFilesGenerator generator = new KotlinFilesGenerator(typesResolver, annotations);
         generator.generateFiles(directory, data);

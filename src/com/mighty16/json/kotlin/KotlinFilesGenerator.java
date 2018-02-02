@@ -12,6 +12,8 @@ import com.intellij.psi.impl.file.PsiDirectoryFactory;
 import com.mighty16.json.annotations.AnnotationGenerator;
 import com.mighty16.json.SourceFilesGenerator;
 import com.mighty16.json.TypesResolver;
+import com.mighty16.json.annotations.GsonAnnotations;
+import com.mighty16.json.annotations.GsonExposeAnnotations;
 import com.mighty16.json.models.ClassModel;
 import com.mighty16.json.models.FieldModel;
 
@@ -61,8 +63,11 @@ public class KotlinFilesGenerator extends SourceFilesGenerator {
             FieldModel field = fields.get(i);
             if (field.enabled) {
                 if (annotations != null) {
-                    if (field.needsSerializesName()) {
-                        builder.append(annotations.getSerializeName(field.jsonName)).append("\n"+gapString);
+                    if (annotations instanceof GsonExposeAnnotations) {
+                        builder.append(((GsonExposeAnnotations) annotations).getExposeName()).append("\n" + gapString);
+                        builder.append(annotations.getSerializeName(field.jsonName)).append("\n" + gapString);
+                    } else if (field.needsSerializesName()) {
+                        builder.append(annotations.getSerializeName(field.jsonName)).append("\n" + gapString);
                     }
                 }
                 String defaultValue = resolver.getDefaultValue(field.type);
