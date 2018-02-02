@@ -23,7 +23,6 @@ public class FieldModel {
     }
 
     public boolean needsSerializesName() {
-        return !name.equals(jsonName);
+        return true
     }
-
 }
